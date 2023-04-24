@@ -5,8 +5,9 @@ Parsing
 -------
 
 TOML Kit comes with a fast and style-preserving parser to help you access
-the content of TOML files and strings::
+the content of TOML files and strings
 
+.. code-block:: python
 
     >>> from tomlkit import dumps
     >>> from tomlkit import parse  # you can also use loads
@@ -30,7 +31,9 @@ the content of TOML files and strings::
 Modifying
 ---------
 
-TOML Kit provides an intuitive API to modify TOML documents::
+TOML Kit provides an intuitive API to modify TOML documents
+
+.. code-block:: python
 
     >>> from tomlkit import dumps
     >>> from tomlkit import parse
@@ -67,10 +70,12 @@ TOML Kit provides an intuitive API to modify TOML documents::
     >>> doc.pop("table2")
     # del doc["table2] is also possible
 
+
 Writing
 -------
 
-You can also write a new TOML document from scratch.
+You can easily write a new TOML document from scratch using
+our `Item` API in combination with built-in types.
 
 Let's say we want to create this following document
 

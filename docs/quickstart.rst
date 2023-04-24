@@ -92,33 +92,40 @@ Let's say we want to create this following document
     connection_max = 5000
     enabled = true
 
-It can be created with the following code::
+It can be created with the following code
 
-    >>> from tomlkit import comment
-    >>> from tomlkit import document
-    >>> from tomlkit import nl
-    >>> from tomlkit import table
+.. code-block:: python
 
-    >>> doc = document()
-    >>> doc.add(comment("This is a TOML document."))
-    >>> doc.add(nl())
-    >>> doc.add("title", "TOML Example")
+    from datetime import datetime
+
+    from tomlkit import comment
+    from tomlkit import document
+    from tomlkit import nl
+    from tomlkit import table
+
+    doc = document()
+    doc.add(comment("This is a TOML document."))
+    doc.add(nl())
+    doc.add("title", "TOML Example")
     # Using doc["title"] = "TOML Example" is also possible
 
-    >>> owner = table()
-    >>> owner.add("name", "Tom Preston-Werner")
-    >>> owner.add("organization", "GitHub")
-    >>> owner.add("bio", "GitHub Cofounder & CEO\nLikes tater tots and beer.")
-    >>> owner.add("dob", datetime(1979, 5, 27, 7, 32, tzinfo=utc))
-    >>> owner["dob"].comment("First class dates? Why not?")
+    owner = table()
+    owner.add("name", "Tom Preston-Werner")
+    owner.add("organization", "GitHub")
+    owner.add("bio", "GitHub Cofounder & CEO\nLikes tater tots and beer.")
+    owner.add("dob", datetime(1979, 5, 27, 7, 32))
+    owner["dob"].comment("First class dates? Why not?")
 
     # Adding the table to the document
-    >>> doc.add("owner", owner)
+    doc.add("owner", owner)
 
-    >>> database = table()
-    >>> database["server"] = "192.168.1.1"
-    >>> database["ports"] = [8001, 8001, 8002]
-    >>> database["connection_max"] = 5000
-    >>> database["enabled"] = True
+    database = table()
+    database["server"] = "192.168.1.1"
+    database["ports"] = [8001, 8001, 8002]
+    database["connection_max"] = 5000
+    database["enabled"] = True
 
-    >>> doc["database"] = database
+    doc["database"] = database
+
+    # render toml str conent
+    print(doc.as_string())
